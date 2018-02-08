@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
    pr_count = 0;
    char str[MAX_BUF]; //Holds the command to be executed and its args
    char * done;
+   char delim[] = " ";
 
    //Ensure the program was executed correctly
    if(argc != 2)
@@ -63,7 +64,8 @@ int main(int argc, char *argv[])
       if(pid == 0)
       {
          char **args;
-         makeargv(str, " ", &args);
+         if (makeargv(str, delim, &args) == -1)
+            perror("makeargv failed");
          execvp(args[0], args);
          perror("Exec failed.\n");
       } 
