@@ -3,6 +3,7 @@
 // an array of char * pointers, leaving argvp pointing to that array.
 // each of the array locations points to a null terminated "token" found in s
 // defined by the delimiter array. The number of tokens found is returned by makeargv
+#include "makeargv.h"
 #include <string.h>
 #include <stdlib.h>
 /*

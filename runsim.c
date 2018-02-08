@@ -1,13 +1,14 @@
 /*
  * Joshua Bearden
- * CS2750 PA6
- * 05/12/17
+ * CS4780 Assignment 1
+ * 2/8/2018
  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <string.h>
+#include "makeargv.h"
 
 #define MAX_BUF 200
 #define MAX_ARG 3
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
    //Ensure the program was executed correctly
    if(argc != 2)
    {
-      printf("Wrong number of command line arguments!\n");
+      perror("Wrong number of command line arguments!\n");
       return 1;
    }
 
@@ -62,12 +63,7 @@ int main(int argc, char *argv[])
       if(pid == 0)
       {
          char * args[MAX_ARG];
-         args[0] = strtok(str, " ");
-         for(i = 1; i < MAX_ARG; i++)
-         {
-            args[i] = strtok(NULL, " ");
-         }
-
+         makeargv(str, " ", args)
          execv(args[0], args);
          perror("Exec failed.\n");
       } 
