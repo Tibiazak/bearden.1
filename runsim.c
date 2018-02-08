@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
       if(pid == 0)
       {
          char * args[MAX_ARG];
-         makeargv(str, " ", args)
+         makeargv(str, " ", &args)
          execv(args[0], args);
          perror("Exec failed.\n");
       } 
