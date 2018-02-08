@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
          char * args[MAX_ARG];
          char ** argpoint = args;
          makeargv(str, " ", &argpoint);
-         execv(args[0], args);
+         execvp(args[0], args);
          perror("Exec failed.\n");
       } 
       else //if this is the parent, increment num of processes & check if a process terminated
