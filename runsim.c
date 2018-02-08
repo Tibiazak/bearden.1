@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
          char * args[MAX_ARG];
          char ** argpoint = args;
          makeargv(str, " ", &argpoint);
-         for (int i = 0; i < MAX_ARG; i++)
+         for (i = 0; i < MAX_ARG; i++)
          {
             printf(args[i]);
          }
