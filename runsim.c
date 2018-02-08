@@ -62,13 +62,8 @@ int main(int argc, char *argv[])
       //if this is the child, get the command and args to run and exec      
       if(pid == 0)
       {
-         char * args[MAX_ARG];
-         char ** argpoint = args;
-         makeargv(str, " ", &argpoint);
-         for (i = 0; i < MAX_ARG; i++)
-         {
-            printf(args[i]);
-         }
+         char **args;
+         makeargv(str, " ", &args);
          execvp(args[0], args);
          perror("Exec failed.\n");
       } 
