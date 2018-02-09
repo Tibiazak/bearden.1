@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
       switch (opt)
       {
          case 'n':
-            pr_limit = optarg;
+            pr_limit = atoi(optarg);
             break;
          case 'h':
             printf("To run this program, use ./runsim -n num < testing.data\n");
