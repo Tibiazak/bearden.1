@@ -5,7 +5,7 @@ Joshua Bearden
 
 Testsim in this program was given to Shahrouz Yousefi's 2750 class in Fall '17
 
-runsim
+RUNSIM:
 This is a program that will fork off processes from a program called testsim. 
 They will run for a specified number of seconds and then terminate. 
 The user will specify when running runsim how many concurrent processes to allow with the switch -n.
@@ -26,3 +26,9 @@ make all
 
 And to clean up the directory, run:
 make clean
+
+GIT:
+There is a file in the directory called gitlog. It contains my git log --stat from working on the program.
+This provides you with all the commits, timestamps, amount of inserts/changes/deletes and my commit messages since
+I initialized the repo.
+ 
