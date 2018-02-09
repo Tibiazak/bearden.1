@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
    //   return 1;
    //}
 
+   pr_limit = -1;
    while (opt = getopt(argc, argv, "n:h") != -1)
       switch (opt)
       {
