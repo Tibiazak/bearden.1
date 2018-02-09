@@ -49,14 +49,14 @@ int main(int argc, char *argv[])
             printf("For example, ./runsim -n 2 < testing.data\n");
             exit(1);
          default:
-            perror("Command line arguments are incorrect! Please run ./runsim -h\n");
+            perror("Command line arguments are incorrect! Please run ./runsim -h");
             exit(1);
       }
    }
    
    if (pr_limit <= 0)
    {
-      perror("Command line arguments are incorrect! Please run ./runsim -h\n");
+      perror("Command line arguments are incorrect! Please run ./runsim -h");
    }
    
 
@@ -92,11 +92,13 @@ int main(int argc, char *argv[])
       {
          char **args;
          if (makeargv(str, delim, &args) == -1)
+         {
             fprintf(stderr, "%s: ", argv[0]);
             perror("makeargv failed");
+         }
          execvp(args[0], args);
          fprintf(stderr, "%s: ", argv[0]);
-         perror("Exec failed.\n");
+         perror("Exec failed.");
       } 
       else //if this is the parent, increment num of processes & check if a process terminated
       {
