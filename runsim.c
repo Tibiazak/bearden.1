@@ -22,41 +22,35 @@ int main(int argc, char *argv[])
    pid_t wait = 0; //holds the process ID for the last terminated process
    int i, pr_limit, pr_count, status;
    pr_count = 0;
+   pr_limit = -1;
    char str[MAX_BUF]; //Holds the command to be executed and its args
    char * done;
    char delim[] = " ";
    int opt;
 
-   //Ensure the program was executed correctly
-   //if(argc != 2)
-   //{
-   //   fprintf(stderr, "%s: ", argv[0]);
-   //   perror("Wrong number of command line arguments!\n");
-   //   return 1;
-   //}
-
-   pr_limit = -1;
+   //Process the command line arguments
    while ((opt = getopt(argc, argv, "n:h")) != -1)
    {
 
       switch (opt)
       {
-         case 'n':
+         case 'n': //Used the switch -n, get the number of concurrent processes
             pr_limit = atoi(optarg);
             break;
-         case 'h':
+         case 'h': //Used the switch -h, display help info and exit
             printf("To run this program, use ./runsim -n num < testing.data\n");
             printf("For example, ./runsim -n 2 < testing.data\n");
             exit(1);
-         default:
+         default: //Used anything else, display error and exit
             perror("Command line arguments are incorrect! Please run ./runsim -h");
             exit(1);
       }
    }
    
-   if (pr_limit <= 0)
+   if (pr_limit <= 0) //If the user input an invalid integer, error and quit
    {
       perror("Command line arguments are incorrect! Please run ./runsim -h");
+      exit(1);
    }
    
 
@@ -91,12 +85,13 @@ int main(int argc, char *argv[])
       if(pid == 0)
       {
          char **args;
+         //call makeargv to make our array. Returns -1 if it fails.
          if (makeargv(str, delim, &args) == -1)
          {
             fprintf(stderr, "%s: ", argv[0]);
             perror("makeargv failed");
          }
-         execvp(args[0], args);
+         execvp(args[0], args); //exec our process, error if failure
          fprintf(stderr, "%s: ", argv[0]);
          perror("Exec failed.");
       } 
