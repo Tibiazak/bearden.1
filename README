@@ -6,7 +6,9 @@ Joshua Bearden
 Testsim in this program was given to Shahrouz Yousefi's 2750 class in Fall '17
 
 runsim
-This is a program that will fork off processes from a program called testsim. They will run for a specified number of seconds and then terminate. The user will specify when running runsim how many concurrent processes to allow with the switch -n.
+This is a program that will fork off processes from a program called testsim. 
+They will run for a specified number of seconds and then terminate. 
+The user will specify when running runsim how many concurrent processes to allow with the switch -n.
 
 USAGE:
 ./runsim -n # < testing.data
@@ -17,7 +19,7 @@ testing.data is the name of the given sample file containing the input for tests
 The testsim input is of the format:
 ./testsim sleep_time repeat_factor
 
-Each time testsim is run, it will sleep for sleep_time seconds, print to the screen, and then repeat repeat_factor times.
+Each time testsim is run, it will sleep for sleep_time seconds, print to the screen, and then repeat repeat_factor times
 
 To compile the program, simply run:
 make all
