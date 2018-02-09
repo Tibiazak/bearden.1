@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
 
    pr_limit = -1;
    while ((opt = getopt(argc, argv, "n:h")) != -1)
+   {
+
       switch (opt)
       {
          case 'n':
@@ -50,6 +52,8 @@ int main(int argc, char *argv[])
             perror("Command line arguments are incorrect! Please run ./runsim -h\n");
             exit(1);
       }
+   }
+   
    if (pr_limit <= 0)
    {
       perror("Command line arguments are incorrect! Please run ./runsim -h\n");
