@@ -1,6 +1,6 @@
 /*
  * Joshua Bearden
- * CS4780 Assignment 1
+ * CS4760 Assignment 1
  * 2/8/2018
  */
 #include <stdio.h>
@@ -25,16 +25,38 @@ int main(int argc, char *argv[])
    char str[MAX_BUF]; //Holds the command to be executed and its args
    char * done;
    char delim[] = " ";
+   int opt;
 
    //Ensure the program was executed correctly
-   if(argc != 2)
+   //if(argc != 2)
+   //{
+   //   fprintf(stderr, "%s: ", argv[0]);
+   //   perror("Wrong number of command line arguments!\n");
+   //   return 1;
+   //}
+
+   while (opt = getopt(argc, argv, "n:h") != -1)
+      switch (opt)
+      {
+         case 'n':
+            pr_limit = optarg;
+            break;
+         case 'h':
+            printf("To run this program, use ./runsim -n num < testing.data\n");
+            printf("For example, ./runsim -n 2 < testing.data\n");
+            exit(1);
+         default:
+            perror("Command line arguments are incorrect! Please run ./runsim -h\n");
+            exit(1);
+      }
+   if (pr_limit <= 0)
    {
-      perror("Wrong number of command line arguments!\n");
-      return 1;
+      perror("Command line arguments are incorrect! Please run ./runsim -h\n");
    }
+   
 
    //Set the max number of concurrent processes
-   pr_limit = atoi(argv[1]);
+   //pr_limit = atoi(argv[1]);
 
    //read the first line of input from stdin
    done = fgets(str, MAX_BUF, stdin);
@@ -65,8 +87,10 @@ int main(int argc, char *argv[])
       {
          char **args;
          if (makeargv(str, delim, &args) == -1)
+            fprintf(stderr, "%s: ", argv[0]);
             perror("makeargv failed");
          execvp(args[0], args);
+         fprintf(stderr, "%s: ", argv[0]);
          perror("Exec failed.\n");
       } 
       else //if this is the parent, increment num of processes & check if a process terminated

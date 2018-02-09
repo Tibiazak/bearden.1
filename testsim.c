@@ -1,4 +1,11 @@
-/* testsim.c */
+/* 
+ * testsim.c 
+ * A program designed to be forked off
+ * Just waits and prints out messages while it waits
+ * And prints its process ID when it quits.
+ *
+ * Given by Shahrouz Yousefi to CS2750
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
